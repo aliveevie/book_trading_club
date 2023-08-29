@@ -7,9 +7,13 @@ app.use(express.json());
 
 
 app.get('/', (req, res) => {
-    console.log(req.body)
     res.sendFile('index.html', { root : 'public' })
 });
+
+app.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('Request send sucessfully!')
+})
 
 
 module.exports = app;
