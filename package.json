@@ -11,5 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "expres": "^0.0.5"
+  },
+  "devDependencies": {
+    "body-parser": "^1.20.2"
   }
 }
