@@ -1,19 +1,15 @@
 const express = require('express');
 const app = express();
-const bodyparser = require('body-parser')
 
-app.use(bodyparser);
 app.use(express.static('public'));
-
-
-
-app.get('/', (req, res) => {
-    res.sendFile('index.html', { root : 'public' })
-});
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 app.get('/', (req, res) => {
     console.log(req.body)
+    res.sendFile('index.html', { root : 'public' })
 });
+
 
 module.exports = app;
