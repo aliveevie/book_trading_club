@@ -29,6 +29,10 @@ app.post('/', async (req, res) => {
       res.json({ id: result.rows[0].id, message: 'Result added successfulyy!'})
 });
 
+app.put('/', async (req, res) => {
+    const table = req.body.table;
+   console.log(req.body)
+});
 
 
 
