@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet"  href="./index.css"  />
     <title>The Book Trading Club</title>
+    <script src="./components/header.js" ></script>
 </head>
 <body>
-    <header>
-        <a href="./index.html">Books Trading Club</a>
-        <a href="./books.html">Books</a>
-        <a href="./request.html" >Request</a>
-        <a href="./trades.html" >Trades</a>
-        <a href="./users.html" >Users</a>
-        <a href="./login.html" >Login</a>
-    </header>
-   
+    <header-component></header-component>
+   <script>
+    fetch('/user')
+  .then((response) => console.log(response))
+   </script>
 </body>
 </html>

@@ -6,6 +6,7 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const session = require('express-session');
 
+
 dotevn.config();
 const db = require('../Database/database');
 
@@ -27,13 +28,16 @@ async function(accessToken, refreshToken, profile, done) {
 
     if (queryResult.rows.length > 0) {
       const user = queryResult.rows[0];
-      console.log('User found:', user);
+      app.get('/user', (req, res) => {
+        res.json({username: username});
+      });
+      
     } else {
       const insertUser =  await db.query('INSERT INTO users(username, fullname, location) VALUES($1, $2, $3)',
       [username, displayName, location]
       );
     };
-    
+  
   return done(null, profile);
 }));
 
