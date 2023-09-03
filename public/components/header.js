@@ -5,14 +5,20 @@ class Header extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
          
-          <header>
-        <a href="./index.html">Books Trading Club</a>
-        <a href="./books.html">Books</a>
-        <a href="./request.html" >Request</a>
-        <a href="./trades.html" >Trades</a>
-        <a href="./users.html" >Users</a>
-        <a href="./profile.html" >Login</a>
-        </header>
+    <header>
+      <a href="./index.html">Books Trading Club</a>
+        <input type="checkbox" id="toggle">
+        <label for="toggle">&#9776;</label>
+        <nav>
+            <ul>
+                <li><a href="./books.html">Books</a></li>
+                <li><a href="./request.html">Request</a></li>
+                <li><a href="./trades.html">Trades</a></li>
+                <li><a href="./users.html">Users</a></li>
+                <li><a href="./profile.html" id="username"></a></li>
+            </ul>
+        </nav>
+    </header>
         `;
     }
   }
@@ -24,10 +30,12 @@ class Header extends HTMLElement {
         // User is authenticated, fetch the username.
         const userData = await fetch('/user');
         const data = await userData.json();
-        console.log(data.username);
+        const username = data.username;
         displayUsername(username);
       } else {
         // User is not authenticated, show login form or redirect to the login page.
+        let username = "login"
+        displayUsername(username);
         showLoginForm();
       }
     } catch (error) {
@@ -39,6 +47,8 @@ class Header extends HTMLElement {
     const usernameElement = document.getElementById('username');
     if (usernameElement) {
       usernameElement.textContent = username;
+    }else{
+      usernameElement.textContent = "login"
     }
   }
   
