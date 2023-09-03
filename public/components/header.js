@@ -15,9 +15,9 @@ class Header extends HTMLElement {
                 <li><a href="./request.html">Request</a></li>
                 <li><a href="./trades.html">Trades</a></li>
                 <li><a href="./users.html">Users</a></li>
-                <li><a href="./login.html" id="username"></a>
-                <ul id="dropDown" ></ul>
-                </li>
+                <li><a href="./login.html" id="username"></a></li>
+                <div id="dropDown" ></div>
+               
             </ul>
         </nav>
     </header>
@@ -37,7 +37,8 @@ class Header extends HTMLElement {
       } else {
         // User is not authenticated, show login form or redirect to the login page.
         let username = "login"
-        displayUsername(username);
+        showLogin(username);
+        
        
       }
     } catch (error) {
@@ -50,10 +51,18 @@ class Header extends HTMLElement {
     const dropDownElement = document.getElementById('dropDown');
     if (usernameElement) {
       usernameElement.textContent = username;
-      dropDownElement.appendChild('li') = showDropDown;
-    }else{
-      usernameElement.textContent = "login"
+      if (username !== 'login') {
+        dropDownElement.innerHTML = showDropDown();
+        dropDownElement.style.display = 'block';
+      } else {
+        dropDownElement.style.display = 'none';
     }
+    }
+  }
+
+  function showLogin(login){
+    const usernameElement = document.getElementById('username');
+    usernameElement.textContent = "login"
   }
   
   function showDropDown() {
@@ -68,6 +77,10 @@ class Header extends HTMLElement {
         </ul>
     `
     return innerHTML;
+  }
+
+  function hideDropDown(dropDown){
+      dropDown.style.display = none;
   }
   
   // Call the function to check authentication when the page loads.
