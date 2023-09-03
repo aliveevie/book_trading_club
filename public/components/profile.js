@@ -5,10 +5,12 @@ class Profile extends HTMLElement {
 
   async connectedCallback() {
     try {
-      const response = await fetch('/user');
-      const data = await response.json();
-      const username = data.username;
-
+    //  const response = await fetch('/user');
+     
+  
+     // const data = await response.json();
+      const username = 'login';
+  
       this.innerHTML = `
         <header>
           <a href="./index.html">Books Trading Club</a>
@@ -24,6 +26,7 @@ class Profile extends HTMLElement {
       // Handle errors if fetch or JSON parsing fails
     }
   }
+  
 }
 
 customElements.define('profile-component', Profile);

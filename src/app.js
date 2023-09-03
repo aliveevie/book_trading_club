@@ -44,6 +44,7 @@ async function(accessToken, refreshToken, profile, done) {
 
 
 
+
 app.use(session({
   secret: '154', // Replace with your actual secret key
   resave: false,
@@ -82,7 +83,13 @@ app.get('/auth/github/callback',
   });
 
 
-
+app.use('/check-auth', (req, res, next) => {
+    if (req.isAuthenticated()) { // Implement your authentication logic here
+       res.redirect('/user');
+       return; // User is authenticated, continue to the next middleware or route handler
+    }
+    res.status(401).json({ message: 'Not authenticated' }); // User is not authenticated
+  });
 
 
 module.exports = app;
